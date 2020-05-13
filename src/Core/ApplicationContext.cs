@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Core.Interfaces;
 using Core.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,7 +10,7 @@ namespace Core
     /// <summary>
     /// Application context.
     /// </summary>
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext, IApplicationContext
     {
         /// <summary>
         /// Users table.
@@ -21,9 +24,20 @@ namespace Core
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
-            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
+
+        /// <inheritdoc/>
+        public Task<int> SaveChangesAsync()
+        {
+            return base.SaveChangesAsync();
+        }
+
+        ///// <inheritdoc/>
+        //public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        //{
+        //    return base.SaveChangesAsync(cancellationToken);
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -4,38 +4,51 @@ using Core.Interfaces;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using Telegram.Bot.Requests;
 
 namespace Core.Commands
 {
+    /// <summary>
+    /// Command to process username and send message with invitation.
+    /// </summary>
     public class UsernameCommand : ITelegramCommand
     {
-        public string Name { get; } = "@";
+        /// <inheritdoc/>
+        public string Key { get; } = "@";
 
-        public async Task Execute(Message message, ITelegramBotClient client)
+        /// <summary>
+        /// Process username and send message with invitation.
+        /// </summary>
+        /// <param name="message">Telegram message.</param>
+        /// <param name="client">Telegram client.</param>
+        /// <param name="userManager">Manager of application users.</param>
+        /// <returns></returns>
+        public async Task Execute(Message message, ITelegramBotClient client, IUserManager userManager)
         {
             Console.WriteLine("Execution of username command!");
 
             // Sender parameters.
-            var chatId = message.Chat.Id;
-            var senderUsername = message.From.Username;
+            var senderId = message.Chat.Id;
+            var senderUsername = message.Chat.Username;
 
+            var recipientUsername = message.Text.Replace("@","");
+            Console.WriteLine($"Recipient username: {recipientUsername}.");
 
-            //// Recipient parameters.
-            //var user = message.From;
-            //var administrators = await client.GetChatAdministratorsAsync(chatId);
+            var recipient = await userManager.GetUserByUsernameAsync(recipientUsername);
 
-            //foreach (var adm in administrators)
-            //{
-            //    Console.WriteLine($"Admin: {adm.User.Username}, ID: {adm.User.Id}, Bot: {adm.User.IsBot}");
-            //}
+            if (recipient == null)
+            {
+                Console.WriteLine($"Unknown or not registered user {recipientUsername}! Try again please!");
+                await client.SendTextMessageAsync(senderId, $"@{recipientUsername} is not a member of CoffeeBot! Try again please!");
+                return;
+            }
 
-            var botId = client.BotId;
-            var bot = await client.GetChatMemberAsync(chatId, botId);
-
-            Console.WriteLine($"Bot id = {botId}");
+            // Success.
+            var recipientId = recipient.Id;
+            Console.WriteLine($"Send invitation to battle to {recipientUsername}.");
+            await client.SendTextMessageAsync(recipientId, $"Are you ready for coffee battle with @{senderUsername}?");
         }
 
-        public bool Contains(Message message) => message.Type != MessageType.Text ? false : message.Text.Contains(Name);
+        /// <inheritdoc/>
+        public bool Contains(Message message) => message.Type != MessageType.Text ? false : message.Text.Contains(Key);
     }
 }

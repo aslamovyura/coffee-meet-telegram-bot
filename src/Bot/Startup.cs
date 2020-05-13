@@ -33,11 +33,13 @@ namespace Bot
         {
             services.AddHealthChecks();
             services.AddScoped<ICommandService, CommandService>();
+            services.AddScoped<IUserManager, UserManager>();
             services.AddTelegramBotClient(Configuration);
 
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<IApplicationContext, ApplicationContext>();
             services.AddControllers().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
