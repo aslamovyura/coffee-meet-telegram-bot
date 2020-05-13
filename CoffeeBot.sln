@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot", "src\Bot\Bot.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\Core\Core.csproj", "{199977F9-AA94-400A-9803-B3C5EE5CB86D}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{31BB12F8-EB83-4C03-BB91-00D88B92F0E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,5 +21,9 @@ Global
 		{199977F9-AA94-400A-9803-B3C5EE5CB86D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{199977F9-AA94-400A-9803-B3C5EE5CB86D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{199977F9-AA94-400A-9803-B3C5EE5CB86D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31BB12F8-EB83-4C03-BB91-00D88B92F0E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31BB12F8-EB83-4C03-BB91-00D88B92F0E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31BB12F8-EB83-4C03-BB91-00D88B92F0E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31BB12F8-EB83-4C03-BB91-00D88B92F0E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
