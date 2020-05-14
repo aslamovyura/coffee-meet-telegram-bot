@@ -17,10 +17,11 @@ namespace Core.Services
             _commands = new List<ITelegramCommand>
             {
                 new StartCommand(),
-                new ContactCommand(),
-                new UsernameCommand(),
-                //new AboutCommand(),
-                //new LinkCommand()
+                new InviteByContactCommand(),
+                new InviteByUsernameCommand(),
+                new InviteByRandomCommand(),
+                new AboutCommand(),
+                //new InviteByIdCommand(),
             };
         }
 

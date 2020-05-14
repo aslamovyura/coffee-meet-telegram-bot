@@ -21,7 +21,6 @@ namespace Core.Extensions
             serviceCollection.AddTransient<ITelegramBotClient>(x => client);
 
             return serviceCollection;
-                
         }
     }
 }

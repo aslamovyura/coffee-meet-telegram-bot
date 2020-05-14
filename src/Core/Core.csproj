@@ -20,5 +20,7 @@
     <Folder Include="Extensions\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+    <Folder Include="Common\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 </Project>

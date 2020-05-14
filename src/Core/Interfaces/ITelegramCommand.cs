@@ -5,24 +5,24 @@ using Telegram.Bot.Types;
 namespace Core.Interfaces
 {
     /// <summary>
-    /// Telegram command.
+    /// Interface for telegram command executing.
     /// </summary>
     public interface ITelegramCommand
     {
         /// <summary>
-        /// Name.
+        /// Command key.
         /// </summary>
-        string Name { get; }
+        string Key { get; }
 
         /// <summary>
         /// Execute command.
         /// </summary>
         /// <param name="message">Message.</param>
         /// <param name="client">TelegramBot client interface.</param>
-        Task Execute(Message message, ITelegramBotClient client);
+        Task Execute(Message message, ITelegramBotClient client, IUserManager userManager);
 
         /// <summary>
-        /// Find a command.
+        /// Find a command key in text.
         /// </summary>
         /// <param name="message">Message.</param>
         /// <returns>Operation result.</returns>

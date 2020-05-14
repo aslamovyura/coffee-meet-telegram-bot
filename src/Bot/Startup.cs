@@ -1,21 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
+using Core;
 using Core.Interfaces;
 using Core.Extensions;
 using Core.Services;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Serialization;
-using Core;
-using Microsoft.EntityFrameworkCore;
 
 namespace Bot
 {
@@ -32,12 +24,16 @@ namespace Bot
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks();
-            services.AddScoped<ICommandService, CommandService>();
-            services.AddTelegramBotClient(Configuration);
 
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<IApplicationContext, ApplicationContext>();
+            services.AddScoped<ICommandService, CommandService>();
+            services.AddScoped<IUserManager, UserManager>();
+            services.AddScoped<ICallbackHandler, CallbackHandler>();
+
+            services.AddTelegramBotClient(Configuration);
             services.AddControllers().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
