@@ -5,7 +5,7 @@ using Telegram.Bot.Types;
 namespace Core.Interfaces
 {
     /// <summary>
-    /// Telegram command.
+    /// Interface for telegram command executing.
     /// </summary>
     public interface ITelegramCommand
     {

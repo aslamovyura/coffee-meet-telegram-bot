@@ -11,17 +11,24 @@ namespace Core.Interfaces
     public interface IUserManager
     {
         /// <summary>
-        /// Get user id by name.
+        /// Get user by name.
         /// </summary>
         /// <param name="username">User name.</param>
         /// <returns>Application user.</returns>
         Task<AppUser> GetUserByUsernameAsync(string username);
 
         /// <summary>
+        /// Get user by identifier.
+        /// </summary>
+        /// <param name="userId">User identifier.</param>
+        /// <returns>Application user.</returns>
+        Task<AppUser> GetUserByIdAsync(long userId);
+
+        /// <summary>
         /// Get all application users.
         /// </summary>
         /// <returns>Array of application users.</returns>
-        Task<IEnumerable<AppUser>> GetUsersAsync();
+        Task<ICollection<AppUser>> GetUsersAsync();
 
         /// <summary>
         /// Create new application user.

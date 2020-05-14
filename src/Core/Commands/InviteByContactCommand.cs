@@ -10,10 +10,10 @@ namespace Core.Commands
     /// <summary>
     /// Command to process user contact and send message with invitation.
     /// </summary>
-    public class ContactCommand : ITelegramCommand
+    public class InviteByContactCommand : InviteCommand, ITelegramCommand
     {
         /// <inheritdoc/>
-        public string Key { get; } = "";
+        public string Key { get; } = string.Empty;
 
         /// <summary>
         /// Process user contact and send message with invitation.
@@ -25,27 +25,20 @@ namespace Core.Commands
         public async Task Execute(Message message, ITelegramBotClient client, IUserManager userManager)
         {
             // Sender parameters.
-            var senderId = message.Chat.Id;
-            var senderUsername = message.Chat.Username;
+            var sender = await GetSender(message, userManager);
 
             // Recipient parameters.
-            var userId = message.Contact.UserId;
-            var firstName = message.Contact.FirstName;
-            var lastName = message.Contact.LastName;
-
-            Console.WriteLine($"Trying to find chat member {firstName} {lastName} with ID: {userId}...");
-            var recipient = await client.GetChatMemberAsync(userId, userId);
+            var recepientId = message.Contact.UserId;
+            var recipient = await userManager.GetUserByIdAsync(recepientId);
 
             if (recipient == null)
             {
-                Console.WriteLine("Chat member is not found!");
-                await client.SendTextMessageAsync(senderId, $"User is not a member of CoffeeBot! Try again!");
+                await client.SendTextMessageAsync(sender.Id, $"@{recipient.Username} is not a member of CoffeeBot! Try again please!");
                 return;
             }
 
-            //var chat = await client.GetChatAsync(chatId);
-            Console.WriteLine($"Send invitation to battle to {firstName} {lastName}, ID:{userId}?");
-            await client.SendTextMessageAsync(userId, $"Are you ready for coffee battle with @{senderUsername}?");
+            // Send invitation.
+            await Invite(sender, recipient, client);
         }
 
         public bool Contains(Message message) => message.Type != MessageType.Contact ? false : true;

@@ -34,7 +34,15 @@ namespace Core.Services
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<AppUser>> GetUsersAsync()
+        public async Task<AppUser> GetUserByIdAsync(long userId)
+        {
+            var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Id == userId);
+
+            return user;
+        }
+
+        /// <inheritdoc/>
+        public async Task<ICollection<AppUser>> GetUsersAsync()
         {
             var users = await _context.AppUsers.ToListAsync();
             return users;
@@ -44,7 +52,7 @@ namespace Core.Services
         public async Task<Result> CreateUserAsync(long userId, string username, string firstName = default, string lastName = default)
         {
             userId = userId > 0 ? userId: throw new ArgumentOutOfRangeException();
-            username = username ?? throw new ArgumentNullException(nameof(username));
+            username = username ?? userId.ToString();
 
             var isExist = await _context.AppUsers.FirstOrDefaultAsync(u => u.Id == userId);
 

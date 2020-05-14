@@ -1,12 +1,10 @@
 ﻿using Core.Interfaces;
-using Core.Models;
-//using Core.Resources;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
 namespace Core.Controllers
 {
@@ -17,6 +15,7 @@ namespace Core.Controllers
         private readonly ITelegramBotClient _telegramBotClient;
         private readonly ICommandService _commandService;
         private readonly IUserManager _userManager;
+        private readonly ICallbackHandler _callbackHandler;
 
         /// <summary>
         /// Constructor with parameters.
@@ -24,13 +23,16 @@ namespace Core.Controllers
         /// <param name="commandService">Interface to use the command service.</param>
         /// <param name="telegramBotClient">Interface to use the Telegram Bot API.</param>
         /// <param name="userManager">Manager of application users.</param>
+        /// <param name="callbackHandler">Handler of user callbacks.</param>
         public BotController(ICommandService commandService,
                              ITelegramBotClient telegramBotClient,
-                             IUserManager userManager)
+                             IUserManager userManager,
+                             ICallbackHandler callbackHandler)
         {
             _commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
             _telegramBotClient = telegramBotClient ?? throw new ArgumentNullException(nameof(telegramBotClient));
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            _callbackHandler = callbackHandler ?? throw new ArgumentNullException(nameof(callbackHandler));
         }
 
         /// <summary>
@@ -42,22 +44,35 @@ namespace Core.Controllers
         {
             if (update == null)
             {
+                Console.WriteLine("-----> No Content!");
                 return NoContent();
             }
 
-            var message = update.Message;
-
-            Console.WriteLine(string.Format("---> Message was recieved {0}, text:{1}  User Id:{2}, message type:{3}", message.Chat.Username, message.Text, message.From.Id, message.Type));
-
-            foreach (var command in _commandService.Get())
+            switch(update.Type)
             {
-                if (command.Contains(message))
-                {
-                    await command.Execute(message, _telegramBotClient, _userManager);
-                    break;
-                }
-            }
+                case UpdateType.Message:
+                    {
+                        var message = update.Message;
+                        Console.WriteLine(string.Format("---> Message was recieved {0}, text:{1}  User Id:{2}, message type:{3}", message.Chat.Username, message.Text, message.From.Id, message.Type));
 
+                        foreach (var command in _commandService.Get())
+                        {
+                            if (command.Contains(message))
+                            {
+                                await command.Execute(message, _telegramBotClient, _userManager);
+                                break;
+                            }
+                        }
+                    }
+                    break;
+
+                case UpdateType.CallbackQuery:
+                    {
+                        var callbackData = update.CallbackQuery.Data;
+                        await _callbackHandler.Execute(callbackData, _telegramBotClient, _userManager);
+                    }
+                    break;
+            }
             return Ok();
         }
     }

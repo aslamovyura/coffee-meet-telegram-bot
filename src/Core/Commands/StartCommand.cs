@@ -14,34 +14,18 @@ namespace Core.Commands
     public class StartCommand : ITelegramCommand
     {
         /// <inheritdoc/>
-        public string Key { get; } = CommonConstants.StartKey;
+        public string Key { get; } = CommandConstants.StartKey;
 
         /// <inheritdoc/>
         public async Task Execute(Message message, ITelegramBotClient client, IUserManager userManager)
         {
+            Console.WriteLine("Start command!");
+
             var chatId = message.Chat.Id;
-            await client.SendTextMessageAsync(chatId, $"Hello {message.From.Username}!");
+            await client.SendTextMessageAsync(chatId, $"Hello @{message.From.Username} and Welcome! This telegram bot allows you to send invitation for coffee meeting to different users. You may choose a certain user (enter @username or share contact with me), or random registered user (enter: /random). For more project details enter: /about. Enjoy!");
 
             var username = message.Chat.Username ?? chatId.ToString();
-
-            var result = await userManager.CreateUserAsync(chatId, username, null, null);
-
-            if (result == null)
-            {
-                Console.WriteLine("User is already exist!");
-                return;
-            }
-
-            if (result.Succeeded)
-            {
-                Console.WriteLine("User was successfully added!");
-                return;
-            }
-            else
-            {
-                foreach (var error in result.Errors)
-                    Console.WriteLine($"-------> ERROR: {error} ");
-            }
+            await userManager.CreateUserAsync(chatId, username, null, null);
         }
 
         /// <inheritdoc/>
