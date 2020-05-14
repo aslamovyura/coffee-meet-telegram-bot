@@ -58,8 +58,8 @@ namespace Core.Services
                 case Answer.Decline:
                     {
                         Console.WriteLine("Sending DECLINE messages for recipient and sender!");
-                        await client.SendTextMessageAsync(recipient.Id, $"Your answer is been send to @{sender.Username}. Be readdy next time!", ParseMode.Default, false, false, 0, replyMarkup: new ReplyKeyboardRemove());
-                        await client.SendTextMessageAsync(sender.Id, $"@{recipient.Username} DECLINE your invitation! Be readdy next time!");
+                        await client.SendTextMessageAsync(recipient.Id, $"Your answer is been send to @{sender.Username}. Get ready next time!", ParseMode.Default, false, false, 0, replyMarkup: new ReplyKeyboardRemove());
+                        await client.SendTextMessageAsync(sender.Id, $"@{recipient.Username} DECLINE your invitation! Get ready next time!");
 
                     }
                     break;

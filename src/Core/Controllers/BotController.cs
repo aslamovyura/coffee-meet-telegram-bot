@@ -48,7 +48,7 @@ namespace Core.Controllers
                 return NoContent();
             }
 
-            switch(update.Type)
+            switch (update.Type)
             {
                 case UpdateType.Message:
                     {
