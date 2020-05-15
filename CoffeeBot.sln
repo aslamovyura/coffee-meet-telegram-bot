@@ -7,6 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\Core\Core.cspro
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{31BB12F8-EB83-4C03-BB91-00D88B92F0E2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution folder", "Solution folder", "{0FD03C91-159B-431D-AF80-BFA8CF8E8877}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{54B87054-F47E-4DC3-8296-4871B0788F3E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{904AD189-E353-4A53-A9FD-5C526D02B75D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,5 +35,10 @@ Global
 		{31BB12F8-EB83-4C03-BB91-00D88B92F0E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31BB12F8-EB83-4C03-BB91-00D88B92F0E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31BB12F8-EB83-4C03-BB91-00D88B92F0E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F6A6C850-96BD-4414-AA5A-D2E19D4D5393} = {54B87054-F47E-4DC3-8296-4871B0788F3E}
+		{199977F9-AA94-400A-9803-B3C5EE5CB86D} = {54B87054-F47E-4DC3-8296-4871B0788F3E}
+		{31BB12F8-EB83-4C03-BB91-00D88B92F0E2} = {904AD189-E353-4A53-A9FD-5C526D02B75D}
 	EndGlobalSection
 EndGlobal
