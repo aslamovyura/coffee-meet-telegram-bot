@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Core.Models;
 using Telegram.Bot;
+using Telegram.Bot.Types;
 
 namespace Core.Interfaces
 {
@@ -12,9 +13,9 @@ namespace Core.Interfaces
         /// <summary>
         /// Execute telegram callback.
         /// </summary>
-        /// <param name="callbackData">Callback data.</param>
+        /// <param name="callbackQuery">Callback query.</param>
         /// <param name="client">TelegramBot client interface.</param>
         /// <param name="userManager">Manager of application users.</param>
-        Task<Result> Execute(string callbackData, ITelegramBotClient client, IUserManager userManager);
+        Task<Result> Execute(CallbackQuery callbackQuery, ITelegramBotClient client, IUserManager userManager);
     }
 }

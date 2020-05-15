@@ -20,7 +20,7 @@ namespace Core.Commands
         {
             var chatId = message.Chat.Id;
 
-            await client.SendTextMessageAsync(chatId, $"CoffeeMeetBoot is an open source project. More details are here: \ud83d\udc49 https://gourl.page.link/3xCw \ud83d\udc48 ");
+            await client.SendTextMessageAsync(chatId, $"CoffeeMeetBoot is an open source project. \ud83d\udcc2 More details are here: \ud83d\udc49 https://gourl.page.link/3xCw \ud83d\udc48 ");
         }
 
         /// <inheritdoc/>

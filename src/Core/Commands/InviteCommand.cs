@@ -26,8 +26,8 @@ namespace Core.Commands
         /// <returns></returns>
         public async Task Invite(AppUser sender, AppUser recipient, ITelegramBotClient bot)
         {
-            recipient = recipient ?? throw new ArgumentNullException(nameof(recipient));
             sender = sender ?? throw new ArgumentNullException(nameof(sender));
+            recipient = recipient ?? throw new ArgumentNullException(nameof(recipient));
             bot = bot ?? throw new ArgumentNullException(nameof(bot));
 
             var accept = JsonConvert.SerializeObject(new InvitationResponce { Answer = Answer.Accept, ToId = sender.Id, FromId = recipient.Id });
@@ -40,7 +40,7 @@ namespace Core.Commands
                 });
 
             await bot.SendTextMessageAsync(recipient.Id, $"\ud83d\udd14 Are you ready for coffee battle with @{sender.Username}? \ud83e\udd20", ParseMode.Default, false, false, 0, rkm);
-            await bot.SendTextMessageAsync(sender.Id, $"Invitation for coffee battle is been sent to @{recipient.Username}! \ud83d\udc4c Wait for response please...");
+            await bot.SendTextMessageAsync(sender.Id, $"Invitation for coffee battle has been sent to @{recipient.Username}! \ud83d\udc4c Wait for response please...");
         }
 
         /// <summary>
@@ -58,6 +58,7 @@ namespace Core.Commands
 
             if (sender == null)
             {
+                Console.WriteLine("Unknown sender! Add this one to database...");
                 await userManager.CreateUserAsync(senderId, senderUsername, null, null);
             }
 

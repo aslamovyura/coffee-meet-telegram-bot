@@ -67,11 +67,13 @@ namespace Bot.Controllers
 
                 case UpdateType.CallbackQuery:
                     {
-                        var callbackData = update.CallbackQuery.Data;
-                        await _callbackHandler.Execute(callbackData, _telegramBotClient, _userManager);
+                        var callbackQuery = update.CallbackQuery;
+                        await _callbackHandler.Execute(callbackQuery, _telegramBotClient, _userManager);
                     }
                     break;
             }
+
+            //await _userManager.GetUsersAsync();
             return Ok();
         }
     }
