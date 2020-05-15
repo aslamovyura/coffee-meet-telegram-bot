@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Core.Common;
+using Core.Entities;
 using Core.Enums;
 using Core.Interfaces;
 using Core.Models;
@@ -35,12 +35,12 @@ namespace Core.Commands
 
             var rkm = new InlineKeyboardMarkup(new[]
                 {
-                    InlineKeyboardButton.WithCallbackData("Agree", accept),
-                    InlineKeyboardButton.WithCallbackData("Disagree", decline),
+                    InlineKeyboardButton.WithCallbackData("Accept", accept),
+                    InlineKeyboardButton.WithCallbackData("Decline", decline),
                 });
 
-            await bot.SendTextMessageAsync(recipient.Id, $"Are you ready for coffee battle with @{sender.Username}?", ParseMode.Default, false, false, 0, rkm);
-            await bot.SendTextMessageAsync(sender.Id, $"Invitation for coffee battle is been sent to @{recipient.Username}! Wait for response please...");
+            await bot.SendTextMessageAsync(recipient.Id, $"\ud83d\udd14 Are you ready for coffee battle with @{sender.Username}? \ud83e\udd20", ParseMode.Default, false, false, 0, rkm);
+            await bot.SendTextMessageAsync(sender.Id, $"Invitation for coffee battle is been sent to @{recipient.Username}! \ud83d\udc4c Wait for response please...");
         }
 
         /// <summary>

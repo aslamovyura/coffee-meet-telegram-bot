@@ -1,4 +1,4 @@
-﻿namespace Core.Common
+﻿namespace Core.Constants
 {
     /// <summary>
     /// Common application constants.

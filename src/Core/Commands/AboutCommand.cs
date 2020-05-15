@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Core.Common;
+using Core.Constants;
 using Core.Interfaces;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -8,7 +8,7 @@ using Telegram.Bot.Types.Enums;
 namespace Core.Commands
 {
     /// <summary>
-    /// Start command for telegram bot.
+    /// About command for telegram bot.
     /// </summary>
     public class AboutCommand : ITelegramCommand
     {
@@ -20,7 +20,7 @@ namespace Core.Commands
         {
             var chatId = message.Chat.Id;
 
-            await client.SendTextMessageAsync(chatId, $"CoffeeMeetBoot is an open source project. More details here: https://gourl.page.link/3xCw");
+            await client.SendTextMessageAsync(chatId, $"CoffeeMeetBoot is an open source project. More details are here: \ud83d\udc49 https://gourl.page.link/3xCw \ud83d\udc48 ");
         }
 
         /// <inheritdoc/>

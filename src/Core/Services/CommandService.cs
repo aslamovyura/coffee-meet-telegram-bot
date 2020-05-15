@@ -21,6 +21,7 @@ namespace Core.Services
                 new InviteByUsernameCommand(),
                 new InviteByRandomCommand(),
                 new AboutCommand(),
+                new UnknownCommand(),
                 //new InviteByIdCommand(),
             };
         }

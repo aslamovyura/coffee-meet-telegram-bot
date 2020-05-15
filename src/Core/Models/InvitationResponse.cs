@@ -1,6 +1,6 @@
 ﻿using Core.Enums;
 
-namespace Core.Common
+namespace Core.Models
 {
     /// <summary>
     /// Model for invitation response.

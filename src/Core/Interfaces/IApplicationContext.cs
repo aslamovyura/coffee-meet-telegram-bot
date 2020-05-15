@@ -1,6 +1,5 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Core.Models;
+﻿using System.Threading.Tasks;
+using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Interfaces
@@ -20,12 +19,5 @@ namespace Core.Interfaces
         /// </summary>
         /// <returns>Saving result.</returns>
         Task<int> SaveChangesAsync();
-
-        ///// <summary>
-        ///// Save changes to database.
-        ///// </summary>
-        ///// <param name="cancellationToken">Cancellation token.</param>
-        ///// <returns>Saving result.</returns>
-        //Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

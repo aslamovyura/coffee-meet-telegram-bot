@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Core.Common;
+using Core.Entities;
 using Core.Models;
 
 namespace Core.Interfaces

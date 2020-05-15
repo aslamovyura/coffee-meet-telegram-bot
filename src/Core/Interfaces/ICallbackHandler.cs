@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Core.Common;
+using Core.Models;
 using Telegram.Bot;
 
 namespace Core.Interfaces

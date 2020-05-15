@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Core.Common;
+using Core.Constants;
 using Core.Interfaces;
 using Telegram.Bot;
 using Telegram.Bot.Types;

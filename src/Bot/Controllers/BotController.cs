@@ -6,7 +6,7 @@ using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
-namespace Core.Controllers
+namespace Bot.Controllers
 {
     [ApiController]
     [Route("api/message/update")]
@@ -44,7 +44,6 @@ namespace Core.Controllers
         {
             if (update == null)
             {
-                Console.WriteLine("-----> No Content!");
                 return NoContent();
             }
 

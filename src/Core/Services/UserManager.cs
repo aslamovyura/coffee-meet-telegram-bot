@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Core.Common;
+using Core.Entities;
 using Core.Interfaces;
 using Core.Models;
 using Microsoft.EntityFrameworkCore;
@@ -58,7 +58,6 @@ namespace Core.Services
 
             if (isExist != null)
             {
-                Console.WriteLine($"User @{username} is already exist!");
                 return null;
             }
 
@@ -68,7 +67,6 @@ namespace Core.Services
                 Username = username
             };
 
-            Console.WriteLine($"Creating new user @{username}!");
             try
             {
                 await _context.AppUsers.AddAsync(user);
@@ -76,12 +74,10 @@ namespace Core.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"ERROR while creating user @{username}!");
                 string[] errors = { ex.Message };
                 return Result.Failure(errors);
             }
 
-            Console.WriteLine($"User @{username} successfully created!");
             return Result.Success();
         }
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Core.Common
+namespace Core.Models
 {
     /// <summary>
     /// Class of result.

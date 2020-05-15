@@ -1,8 +1,6 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Core.Entities;
 using Core.Interfaces;
-using Core.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core
@@ -32,12 +30,6 @@ namespace Core
         {
             return base.SaveChangesAsync();
         }
-
-        ///// <inheritdoc/>
-        //public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
-        //{
-        //    return base.SaveChangesAsync(cancellationToken);
-        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

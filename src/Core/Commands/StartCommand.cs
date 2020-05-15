@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Core.Common;
+using Core.Constants;
 using Core.Interfaces;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -22,9 +22,9 @@ namespace Core.Commands
             Console.WriteLine("Start command!");
 
             var chatId = message.Chat.Id;
-            await client.SendTextMessageAsync(chatId, $"Hello @{message.From.Username} and Welcome! This telegram bot allows you to send invitation for coffee meeting to different users. You may choose a certain user (enter @username or share contact with me), or random registered user (enter: /random). For more project details enter: /about. Enjoy!");
-
             var username = message.Chat.Username ?? chatId.ToString();
+
+            await client.SendTextMessageAsync(chatId, $"Hello @{username} and Welcome! \ud83e\udd73 \ud83c\udf89 This telegram bot allows you to send invitation for coffee meeting to different users. \u2615\ufe0f \ud83c\udf69 You may choose a certain user (enter @username or share contact with me), or random registered user (enter: /random). For more project details enter: /about. Enjoy!");
             await userManager.CreateUserAsync(chatId, username, null, null);
         }
 
