@@ -24,6 +24,7 @@ namespace Bot.Controllers
         /// <param name="telegramBotClient">Interface to use the Telegram Bot API.</param>
         /// <param name="userManager">Manager of application users.</param>
         /// <param name="callbackHandler">Handler of user callbacks.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public BotController(ICommandService commandService,
                              ITelegramBotClient telegramBotClient,
                              IUserManager userManager,
@@ -73,7 +74,6 @@ namespace Bot.Controllers
                     break;
             }
 
-            //await _userManager.GetUsersAsync();
             return Ok();
         }
     }

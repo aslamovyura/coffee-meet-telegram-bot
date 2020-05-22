@@ -22,5 +22,73 @@
     <Folder Include="Constants\" />
     <Folder Include="Enums\" />
     <Folder Include="Models\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\About.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>About.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\InviteByContact.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InviteByContact.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\InviteById.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InviteById.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\InviteByRandom.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InviteByRandom.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\InviteByUsername.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InviteByUsername.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Invite.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InviteCommon.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Start.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Start.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Unknown.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Unknown.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Callback.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Callback.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\About.Designer.cs">
+      <DependentUpon>About.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\InviteByContact.Designer.cs">
+      <DependentUpon>InviteByContact.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\InviteById.Designer.cs">
+      <DependentUpon>InviteById.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\InviteByRandom.Designer.cs">
+      <DependentUpon>InviteByRandom.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\InviteByUsername.Designer.cs">
+      <DependentUpon>InviteByUsername.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Invite.Designer.cs">
+      <DependentUpon>InviteCommon.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Start.Designer.cs">
+      <DependentUpon>Start.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Unknown.Designer.cs">
+      <DependentUpon>Unknown.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Callback.Designer.cs">
+      <DependentUpon>Callback.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

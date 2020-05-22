@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Constants;
 using Core.Interfaces;
+using Core.Resources;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -33,7 +34,8 @@ namespace Core.Commands
             var users = await userManager.GetUsersAsync();
             if (users.Count <= 2)
             {
-                await client.SendTextMessageAsync(sender.Id, $"Not enough users! Required at least 3 users (now {users.Count})! Try again later please...");
+                var errorMessage = string.Format(InviteByRandom.Message, users.Count);
+                await client.SendTextMessageAsync(sender.Id, errorMessage);
                 return;
             }
 
@@ -43,8 +45,6 @@ namespace Core.Commands
             // Select random recipient.
             Random rand = new Random();
             var index = rand.Next(users.Count);
-            Console.WriteLine($"Users count: {users.Count}");
-            Console.WriteLine($"Recipient index: {index}");
             var recipient = users.ElementAt(index);
 
             // Send invitation.

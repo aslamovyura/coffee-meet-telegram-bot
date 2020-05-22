@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Core.Interfaces;
+using Core.Resources;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -32,7 +33,8 @@ namespace Core.Commands
 
             if (recipient == null)
             {
-                await client.SendTextMessageAsync(sender.Id, $"@{recipient.Username} is not a member of CoffeeBot! Try again please!");
+                var text = string.Format(InviteByContact.Message, recipient.Username);
+                await client.SendTextMessageAsync(sender.Id, text);
                 return;
             }
 

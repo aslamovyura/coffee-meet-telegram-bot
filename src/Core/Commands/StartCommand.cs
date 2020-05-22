@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Core.Constants;
 using Core.Interfaces;
+using Core.Resources;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -24,7 +25,8 @@ namespace Core.Commands
             var chatId = message.Chat.Id;
             var username = message.Chat.Username ?? chatId.ToString();
 
-            await client.SendTextMessageAsync(chatId, $"Hello @{username} and Welcome! \ud83e\udd73 \ud83c\udf89 This telegram bot allows you to send invitation for coffee meeting to different users. \u2615\ufe0f \ud83c\udf69 You may choose a certain user (enter @username or share contact with me), or random registered user (enter: /random). For more project details enter: /about. Enjoy!");
+            var helloMessage = string.Format(Start.Hello, username);
+            await client.SendTextMessageAsync(chatId, $"{helloMessage} \ud83e\udd73 \ud83c\udf89 {Start.AllowToSendInvitation} \u2615\ufe0f \ud83c\udf69 {Start.MainCommands}");
             await userManager.CreateUserAsync(chatId, username, null, null);
         }
 

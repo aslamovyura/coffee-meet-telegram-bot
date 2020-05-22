@@ -29,7 +29,6 @@ namespace Core.Services
         public async Task<AppUser> GetUserByUsernameAsync(string username)
         {
             var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Username == username);
-
             return user;
         }
 
@@ -37,7 +36,6 @@ namespace Core.Services
         public async Task<AppUser> GetUserByIdAsync(long userId)
         {
             var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Id == userId);
-
             return user;
         }
 

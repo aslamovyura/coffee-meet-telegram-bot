@@ -8,9 +8,13 @@ using Core.Enums;
 using Core.Interfaces;
 using Core.Models;
 using Telegram.Bot.Types;
+using Core.Resources;
 
 namespace Core.Services
 {
+    /// <summary>
+    /// Class to manage user's callback.
+    /// </summary>
     public class CallbackHandler : ICallbackHandler
     {
         /// <inheritdoc/>
@@ -45,16 +49,21 @@ namespace Core.Services
             {
                 case Answer.Accept:
                     {
-                        await client.SendTextMessageAsync(recipient.Id, $"Your answer has been sent to @{sender.Username}. Prepare for coffee battle! \ud83d\udcaa", ParseMode.Default, false, false, 0, replyMarkup: new ReplyKeyboardRemove());
-                        await client.SendTextMessageAsync(sender.Id, $"@{recipient.Username} ACCEPT your invitation! \ud83e\udd1d \ud83d\ude0e Prepare for coffee battle! \ud83d\udcaa");
+                        var recipientText = string.Format(Callback.AnswerSent, sender.Username);
+                        var senderText = string.Format(Callback.AcceptInvitation, recipient.Username);
+
+                        await client.SendTextMessageAsync(recipient.Id, $"{recipientText} {Callback.Prepare} \ud83d\udcaa", ParseMode.Default, false, false, 0, replyMarkup: new ReplyKeyboardRemove());
+                        await client.SendTextMessageAsync(sender.Id, $"{senderText} \ud83e\udd1d \ud83d\ude0e {Callback.Prepare} \ud83d\udcaa");
                     }
                     break;
 
                 case Answer.Decline:
                     {
-                        await client.SendTextMessageAsync(recipient.Id, $"Your answer has been sent to @{sender.Username}. Get ready next time! \ud83d\udc4c", ParseMode.Default, false, false, 0, replyMarkup: new ReplyKeyboardRemove());
-                        await client.SendTextMessageAsync(sender.Id, $"@{recipient.Username} DECLINE your invitation! \ud83e\udd2d \ud83d\ude2d Get ready next time! \ud83d\udc4c");
+                        var recipientText = string.Format(Callback.AnswerSent, sender.Username);
+                        var senderText = string.Format(Callback.DeclineInvitation, recipient.Username);
 
+                        await client.SendTextMessageAsync(recipient.Id, $"{recipientText} {Callback.GetReady} \ud83d\udc4c", ParseMode.Default, false, false, 0, replyMarkup: new ReplyKeyboardRemove());
+                        await client.SendTextMessageAsync(sender.Id, $"{senderText} \ud83e\udd2d \ud83d\ude2d {Callback.GetReady} \ud83d\udc4c");
                     }
                     break;
             }

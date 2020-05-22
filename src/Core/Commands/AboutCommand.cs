@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Core.Constants;
 using Core.Interfaces;
+using Core.Resources;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -19,8 +20,7 @@ namespace Core.Commands
         public async Task Execute(Message message, ITelegramBotClient client, IUserManager userManager)
         {
             var chatId = message.Chat.Id;
-
-            await client.SendTextMessageAsync(chatId, $"CoffeeMeetBoot is an open source project. \ud83d\udcc2 More details are here: \ud83d\udc49 https://gourl.page.link/3xCw \ud83d\udc48 ");
+            await client.SendTextMessageAsync(chatId, $"{About.OpenSounceProject} \ud83d\udcc2 {About.MoreDetails} \ud83d\udc49 {About.Link} \ud83d\udc48 ");
         }
 
         /// <inheritdoc/>
