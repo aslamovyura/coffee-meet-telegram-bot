@@ -61,6 +61,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Callback.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\InviteCommon.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InviteCommon.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\About.Designer.cs">
@@ -89,6 +93,9 @@
     </Compile>
     <Compile Update="Resources\Callback.Designer.cs">
       <DependentUpon>Callback.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\InviteCommon.Designer.cs">
+      <DependentUpon>InviteCommon.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>
