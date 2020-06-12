@@ -59,7 +59,7 @@ heroku container:release web -a coffee-meet-bot
 
 ## Author
 
-[Yury Aslamov]();
+[Yury Aslamov](https://aslamovyura.github.io/)
 
 ## License
 
